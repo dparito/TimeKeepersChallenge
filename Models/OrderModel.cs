@@ -46,9 +46,9 @@ namespace Models
                 {
                     if (watches[id].DiscountAmount > 0)
                     {
-                        var quotient = OrderByWatchId[id] / watches[id].DiscountQuantity;
-                        var remainder = OrderByWatchId[id] % watches[id].DiscountQuantity;
-                        TotalCost += (remainder * watches[id].UnitPrice) + (quotient * watches[id].DiscountAmount);
+                        var fullPriceWatches = OrderByWatchId[id] / watches[id].DiscountQuantity;
+                        var discountedWatches = OrderByWatchId[id] % watches[id].DiscountQuantity;
+                        TotalCost += (discountedWatches * watches[id].UnitPrice) + (fullPriceWatches * watches[id].DiscountAmount);
                     }
                     else
                         TotalCost += OrderByWatchId[id] * watches[id].UnitPrice;

@@ -1,0 +1,155 @@
+﻿<Window x:Class="Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gui"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TITLE-->
+        <Grid Grid.Row="0">
+            <Label 
+                Name="Title" 
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                FontFamily="Helvetica" FontSize="28"
+                Content="Time Keepers" />
+        </Grid>
+        
+        <!--INVENTORY-->
+        <!--<Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Label
+                    Name="lblWatchName1"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding WatchName}" />
+                <Label
+                    Name="lblWatchPrice1"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding UnitPriceString}" />
+                <TextBox
+                    Name="txtQuantityInput1"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Text="{Binding OrderedQuantity, Mode=OneWayToSource}" />
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Label
+                    Name="lblWatchName2"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding WatchName}" />
+                <Label
+                    Name="lblWatchPrice2"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding UnitPriceString}" />
+                <TextBox
+                    Name="txtQuantityInput2"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Text="{Binding OrderedQuantity, Mode=OneWayToSource}" />
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Label
+                    Name="lblWatchName3"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding WatchName}" />
+                <Label
+                    Name="lblWatchPrice3"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding UnitPriceString}" />
+                <TextBox
+                    Name="txtQuantityInput3"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Text="{Binding OrderedQuantity, Mode=OneWayToSource}" />
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <Label
+                    Name="lblWatchName4"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding WatchName}" />
+                <Label
+                    Name="lblWatchPrice4"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Content="{Binding UnitPriceString}" />
+                <TextBox
+                    Name="txtQuantityInput4"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                    Text="{Binding OrderedQuantity, Mode=OneWayToSource}" />
+            </Grid>
+
+        </Grid>-->
+
+        <Grid Grid.Row="1">
+            <DataGrid Name="dgWatches" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="WatchId" Binding="{Binding WatchId}"/>
+                    <DataGridTextColumn Header="Watch Name" Binding="{Binding WatchName}"/>
+                    <DataGridTextColumn Header="Unit Price" Binding="{Binding UnitPrice}"/>
+                </DataGrid.Columns>
+            </DataGrid> 
+        </Grid>
+
+        <!--SUBMIT BUTTON-->
+        <Grid Grid.Row="2">
+            <Button
+                Name="btnSubmit"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Content="Add To Cart"
+                Command="{Binding AddToCartCommand}"/>
+        </Grid>
+        
+        <!--TOTAL COST-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Name="lblTotalCost"
+                Grid.Column="0"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Content="Total Cost (USD): " />
+
+            <TextBlock
+                Name="txtBlockTotalCost"
+                Grid.Column="2"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                Text="{Binding TotalCost}" />
+        </Grid>
+    </Grid>
+</Window>

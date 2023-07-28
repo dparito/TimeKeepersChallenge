@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    /// <summary>
+    /// Model class for orders
+    /// </summary>
     public class OrderModel
     {
         #region Private Member Variables
 
+        // auto-incrementing order ID
         public static int _orderId = 0;
 
         #endregion // Member Variables
@@ -35,15 +39,21 @@ namespace Models
 
         #region Public Methods
 
+        /// <summary>
+        /// Calculates total cost of the order by correlating ordered quantity by watch ID and applying corresponding discounts
+        /// </summary>
+        /// <param name="watches">Inventory of watched with corresponding watch IDs</param>
+        /// <returns>Total cost to the user</returns>
         public int CalculateTotalCost(Dictionary<int, WatchModel> watches)
         {
-            var orderDict = new Dictionary<int, int>();
             foreach (var id in OrderByWatchId.Keys)
             {
+                // Verifying ordered watch exists in inventory
                 if (!watches.ContainsKey(id))
                     break;
                 else
                 {
+                    // Applying discounts if applicable
                     if (watches[id].DiscountAmount > 0)
                     {
                         var fullPriceWatches = OrderByWatchId[id] / watches[id].DiscountQuantity;
@@ -51,7 +61,7 @@ namespace Models
                         TotalCost += (discountedWatches * watches[id].UnitPrice) + (fullPriceWatches * watches[id].DiscountAmount);
                     }
                     else
-                        TotalCost += OrderByWatchId[id] * watches[id].UnitPrice;
+                        TotalCost += OrderByWatchId[id] * watches[id].UnitPrice; // calculating total cost directly for non-discounted items
                 }
             }
 

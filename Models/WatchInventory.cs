@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    /// <summary>
+    /// Model class for Watch Inventory. Set/Modify watch inventory from here
+    /// </summary>
     public class WatchInventory
     {
         #region Constructor
